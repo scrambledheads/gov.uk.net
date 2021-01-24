@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "description": "Gov Uk Dot Net",
+  "devDependencies": {
+    "govuk-frontend": "3.10.2",
+    "webpack": "5.15.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "repository": "git",
+  "scripts": {
+    "build": "webpack --progress --profile"
+  }
+}

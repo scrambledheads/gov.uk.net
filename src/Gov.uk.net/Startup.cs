@@ -49,6 +49,7 @@ namespace Gov.uk.net
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
         }

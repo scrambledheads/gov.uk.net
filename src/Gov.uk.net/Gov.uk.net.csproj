@@ -8,22 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\_assets\**" />
-    <Content Remove="wwwroot\_assets\**" />
-    <EmbeddedResource Remove="wwwroot\_assets\**" />
-    <None Remove="wwwroot\_assets\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.10" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\assets\js\" />
+    <Folder Include="wwwroot\assets\styles\" />
   </ItemGroup>
-  
-  <Target Name="FrontEnd" BeforeTargets="BeforeBuild">
-    <Exec Command="npm --prefix ./Gov.uk.net/ run build" />
-  </Target>
 </Project>

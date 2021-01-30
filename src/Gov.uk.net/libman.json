@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "govuk-frontend@3.10.2",
+      "destination": "lib/"
+    }
+  ]
+}

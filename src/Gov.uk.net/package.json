@@ -1,15 +1,10 @@
 {
-  "version": "1.0.0",
-  "name": "asp.net",
-  "private": true,
-  "description": "Gov Uk Dot Net",
+  "name": "gov.uk.net",
+  "version": "0.1",
+  "description": ".Net implementation of Gov Uk design system",
   "devDependencies": {
-    "govuk-frontend": "3.10.2",
-    "webpack": "5.15.0",
-    "webpack-cli": "^4.3.1"
-  },
-  "repository": "git",
-  "scripts": {
-    "build": "webpack --progress --profile"
+    "gulp": "^4.0.2",
+    "gulp-dart-sass": "1.0.2",
+    "gulp-uglify": "^3.0.2"
   }
 }

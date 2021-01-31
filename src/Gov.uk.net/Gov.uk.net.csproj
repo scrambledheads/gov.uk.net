@@ -16,4 +16,8 @@
     <Folder Include="wwwroot\assets\js\" />
     <Folder Include="wwwroot\assets\styles\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gov.Uk.net.library\Gov.Uk.Net.Library.csproj" />
+  </ItemGroup>
 </Project>

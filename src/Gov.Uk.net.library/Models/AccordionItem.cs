@@ -1,37 +1,82 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-namespace Gov.Uk.net.library.Models
+namespace Gov.Uk.Net.Library.Models
 {
-    public class AccordionItem
+    public record AccordionItem
     {
-        public AccordionItem(IHtmlContent heading, IHtmlContent content, bool? hidden)
+        public AccordionItem(string heading, string summary, string content,  bool? expanded)
+        {
+            HeadingText = heading;
+            SummaryText = summary;
+            ContentText = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(IHtmlContent heading, string summary, string content,  bool? expanded)
+        {
+            HeadingHTML = heading;
+            SummaryText = summary;
+            ContentText = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(IHtmlContent heading, string summary, IHtmlContent content,  bool? expanded)
+        {
+            HeadingHTML = heading;
+            SummaryText = summary;
+            ContentHTML = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(string heading, string summary, IHtmlContent content, bool? expanded)
+        {
+            HeadingText = heading;
+            SummaryText = summary;
+            ContentHTML = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(string heading, IHtmlContent summary, IHtmlContent content, bool? expanded)
+        {
+            HeadingText = heading;
+            SummaryHTML = summary;
+            ContentHTML = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(string heading, IHtmlContent summary, string content, bool? expanded)
+        {
+            HeadingText = heading;
+            SummaryHTML = summary;
+            ContentText = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(IHtmlContent heading, IHtmlContent summary, string content, bool? expanded)
+        {
+            HeadingHTML = heading;
+            SummaryHTML = summary;
+            ContentText = content;
+            Expanded = expanded ?? false;
+        }
+
+        public AccordionItem(IHtmlContent heading, IHtmlContent summary, IHtmlContent content, bool? expanded)
         {
             HeadingHTML = heading;
             ContentHTML = content;
+            SummaryHTML = summary;
+            Expanded = expanded ?? false;
         }
 
-        public AccordionItem(string heading, IHtmlContent content, bool? hidden)
-        {
-            HeadingText = heading;
-            ContentHTML = content;
-        }
+        public string HeadingText { get; init; }
+        public IHtmlContent HeadingHTML { get; init; }
 
-        public AccordionItem(string heading, string content, bool? hidden)
-        {
-            HeadingText = heading;
-            ContentText = content;
-        }
+        public string ContentText { get; init; }
+        public IHtmlContent ContentHTML { get; init; }
 
-        public AccordionItem(IHtmlContent heading, string content, bool? hidden)
-        {
-            HeadingHTML = heading;
-            ContentText = content;
-        }
+        public string SummaryText { get; init; }
+        public IHtmlContent SummaryHTML { get; init; }
 
-        public string HeadingText { get; private set; }
-        public IHtmlContent HeadingHTML { get; private set; }
-
-        public string ContentText { get; private set; }
-        public IHtmlContent ContentHTML { get; private set; }
+        public bool Expanded { get; init; }
     }
 }

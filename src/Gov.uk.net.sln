@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30803.129
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gov.uk.net", "Gov.uk.net\Gov.uk.net.csproj", "{2C93EEE5-ED3B-49EA-BC2A-21502412100D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gov.Uk.net.library", "Gov.Uk.net.library\Gov.Uk.net.library.csproj", "{195A1892-EDDA-4923-80F5-41F17ED3DAE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gov.Uk.Net.Library", "Gov.Uk.net.library\Gov.Uk.Net.Library.csproj", "{195A1892-EDDA-4923-80F5-41F17ED3DAE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

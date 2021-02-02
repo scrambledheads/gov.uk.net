@@ -1,5 +1,7 @@
 # Introduction 
-This is an implementation (or the start of) .Gov.uk's https://design-system.service.gov.uk/ design system in .Net
+This is an implementation (or the start of) .Gov.uk's https://design-system.service.gov.uk/ design system in .Net see http://govuknet.azurewebsites.net/ for the published version
+
+
 
 #ToDo 
  - Implement all of the components

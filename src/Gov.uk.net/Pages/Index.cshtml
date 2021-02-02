@@ -2,16 +2,10 @@
 @model IndexModel
 @{
         ViewData["Title"] = "Home page";
-
-        var items = new List<AccordionItem>()
-        {
-            new AccordionItem("Heading", new HtmlString("<span class=\"govuk-body\">Summary HTML</span>"), new HtmlString("<p class=\"govuk-body\">This is HTML content.</p>"), false),
-            new AccordionItem(new HtmlString("<span class=\"govuk-body\">Summary HTML</span>"), new HtmlString("<span class=\"govuk-body\">Summary HTML</span>"), new HtmlString("<p class=\"govuk-body\">This is HTML content.</p>"), false)
-        };
 }
 
-
-<Gov-Uk-Accordion id="accordion-default" items=items></Gov-Uk-Accordion>
+<h1 class="govuk-heading-xl">Accordion</h1>
+<Gov-Uk-Accordion id="accordion-default" items=Model.Items></Gov-Uk-Accordion>
 
 @*<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section ">

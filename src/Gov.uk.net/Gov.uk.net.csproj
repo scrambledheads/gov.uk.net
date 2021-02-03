@@ -13,11 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\js\" />
-    <Folder Include="wwwroot\assets\styles\" />
+    <ProjectReference Include="..\Gov.Uk.net.library\Gov.Uk.Net.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gov.Uk.net.library\Gov.Uk.Net.Library.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

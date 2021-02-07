@@ -1,0 +1,12 @@
+﻿@page
+@model Gov.uk.net.Pages.AccordionModel
+@{
+}
+@{
+        ViewData["Title"] = "Accordion";
+}
+<h1 class="govuk-heading-xl">Accordion</h1>
+<div class="app-prose-scope">
+    <p class="govuk-body">This is an example implementation of the accordion component as a Tag helper</p>
+    <Gov-Uk-Accordion id="accordion-default" items=Model.Items></Gov-Uk-Accordion>
+</div>

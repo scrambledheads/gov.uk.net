@@ -1,13 +1,11 @@
 ﻿using Gov.Uk.Net.Library.Models;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using static Gov.Uk.Net.Library.Enums.HeaderEnums;
 
-namespace Gov.Uk.Net.Library
+namespace Gov.Uk.Net.Library.Components
 {
     public class GovUkAccordion : TagHelper
     {
@@ -20,7 +18,7 @@ namespace Gov.Uk.Net.Library
         [HtmlAttributeName("classes")]
         public List<string> Classes { get; set; }
 
-        [HtmlAttributeName("classes")]
+        [HtmlAttributeName("attributes")]
         public List<Tuple<string, string>> Attributes { get; set; }
 
         [HtmlAttributeName("items")]
@@ -49,8 +47,6 @@ namespace Gov.Uk.Net.Library
             output.TagName = "div";
             output.Attributes.Add("class", "govuk-accordion");
             output.Attributes.Add("data-module", "govuk-accordion");
-
-            
 
             if (!string.IsNullOrEmpty(Id))
             {

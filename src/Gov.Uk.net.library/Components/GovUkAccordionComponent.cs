@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
-using static Gov.Uk.Net.Library.Enums.HeaderEnums;
+using static Gov.Uk.Net.Library.Enums.HTMLEnums;
 
 namespace Gov.Uk.Net.Library.Components
 {
@@ -39,7 +39,7 @@ namespace Gov.Uk.Net.Library.Components
             // Default value is H2 as per component spec - https://design-system.service.gov.uk/components/accordion/
             if (!HeadingLevel.HasValue)
             {
-                HeadingLevel = Enums.HeaderEnums.HeadingLevel.h2;
+                HeadingLevel = Enums.HTMLEnums.HeadingLevel.h2;
             }
 
             //var tagContent = await output.GetChildContentAsync();

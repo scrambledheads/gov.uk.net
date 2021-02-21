@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text.Encodings.Web;
-using static Gov.Uk.Net.Library.Enums.HeaderEnums;
+using static Gov.Uk.Net.Library.Enums.HTMLEnums;
 
 namespace Gov.Uk.Net.Library
 {

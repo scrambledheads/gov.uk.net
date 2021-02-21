@@ -11,14 +11,14 @@ namespace Gov.Uk.Net.Library.Models
         public string Href { get; init; }
         public List<Tuple<string, string>> Attributes { get; set; }
 
-        public BreadcrumbItem(IHtmlContent html, string href, List<Tuple<string, string>> attributes)
+        public BreadcrumbItem(IHtmlContent html, string href, List<Tuple<string, string>> attributes = null)
         {
             HTML = html;
             Href = href;
             Attributes = attributes;
         }
 
-        public BreadcrumbItem(string text, string href, List<Tuple<string, string>> attributes)
+        public BreadcrumbItem(string text, string href, List<Tuple<string, string>> attributes = null)
         {
             Text = text;
             Href = href;

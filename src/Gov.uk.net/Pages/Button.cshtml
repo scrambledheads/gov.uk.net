@@ -2,5 +2,56 @@
 @model BreadcrumbsModel
 @{
     ViewData["Title"] = "Button";
+
+    var secondaryClasses = new List<string>()
+    {
+        "govuk-button--secondary"
+    };
+    var warningClasses = new List<string>()
+    {
+        "govuk-button--warning"
+    };
 }
 <h1>@ViewData["Title"]</h1>
+
+<p>
+Default Button
+    <gov-uk-button>Save and continue</gov-uk-button>
+</p>
+
+<p>
+Start Button
+    <gov-uk-button isStartButton=true href="#">Start now</gov-uk-button>
+</p>
+
+<p>
+Secondary button
+    <gov-uk-button classes=secondaryClasses>Find Address</gov-uk-button>
+</p>
+
+<p>
+Warning button
+    <gov-uk-button classes=warningClasses>Delete account</gov-uk-button>
+</p>
+
+<p>
+Disabled button
+    <gov-uk-button disabled=true>Disabled button</gov-uk-button>
+</p>
+
+<div class="govuk-button-group">
+Button group
+    <gov-uk-button>Save and continue</gov-uk-button>
+    <gov-uk-button classes=secondaryClasses>Save as draft</gov-uk-button>
+</div>
+
+<div class="govuk-button-group">
+Button with link
+    <gov-uk-button>Continue</gov-uk-button>
+    <a class="govuk-link" href="#">Cancel</a>
+</div>
+
+<div class="govuk-button-group">
+Prevent Double-link
+    <gov-uk-button preventDoubleClick=true>Confirm and send</gov-uk-button>
+</div>

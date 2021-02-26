@@ -42,8 +42,6 @@ namespace Gov.Uk.Net.Library.Components
                 HeadingLevel = Enums.HTMLEnums.HeadingLevel.h2;
             }
 
-            //var tagContent = await output.GetChildContentAsync();
-
             output.TagName = "div";
             output.Attributes.Add("class", "govuk-accordion");
             output.Attributes.Add("data-module", "govuk-accordion");

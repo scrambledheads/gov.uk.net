@@ -1,18 +1,24 @@
 ﻿@model GovUkCharacterCountPattern
 @{
-}
-<div class="govuk-character-count" data-module="govuk-character-count"
-@{
-    if (Model.MaxLength > 0){
-        <text> data-maxlength="@Model.MaxLength" </text>
+    HtmlString maxLength = null;
+    HtmlString threshold = null;
+    HtmlString maxWords = null;
+    if (Model.MaxLength > 0)
+    {
+        maxLength = new HtmlString($" data-maxlength=\"{Model.MaxLength}\" ");
     }
-    if (Model.Threshold > 0){
-        <text> data-threshold="@Model.Threshold" </text>
+    if (Model.Threshold > 0)
+    {
+       threshold = new HtmlString($" data-threshold=\"{Model.Threshold}\" ");
     }
-    if (Model.MaxWords > 0){
-        <text> data-maxwords="@Model.MaxWords" </text>
+    if (Model.MaxWords > 0)
+    {
+        maxWords = new HtmlString($" data-maxwords=\"{Model.MaxWords}\" ");
     }
-}>
 
-Test
+}
+<div class="govuk-character-count" data-module="govuk-character-count" @maxLength@threshold@maxWords>
+GovUkTextArea
+
+GovUkHint
 </div>

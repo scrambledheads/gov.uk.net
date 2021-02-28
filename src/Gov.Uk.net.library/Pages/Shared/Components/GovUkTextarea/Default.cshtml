@@ -1,0 +1,24 @@
+﻿@model Textarea
+@{
+    if (Model != null)
+    {
+        HtmlString errorMessage = null;
+
+        if (Model.ErrorMessage != null)
+        {
+            errorMessage = new HtmlString($" govuk-form-group--error");
+        }
+
+        if (Model.Label == null)
+        {
+            Model.Label = new Label();
+        }
+
+        <div class="govuk-form-group @errorMessage">
+            <vc:gov-uk-Label label=Model.Label></vc:gov-uk-Label>
+            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
+            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
+        </div>
+        <textarea ></textarea>
+    }
+}

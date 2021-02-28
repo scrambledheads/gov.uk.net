@@ -1,0 +1,43 @@
+﻿@using System.Text
+@model Label
+@{
+    var baseCssClass = $"class=\"govuk-label";
+    HtmlString cssClass;
+    if (Model.Classes != null)
+    {
+        var cssClasString = new StringBuilder();
+        foreach (var @class in Model.Classes)
+        {
+            cssClasString.Append($" {@class}");
+        }
+        
+        cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
+    }
+    else
+    {
+        cssClass = new HtmlString($"{baseCssClass}\"");
+    }
+}
+    @if (Model.IsPageHeading)
+    {
+        @:<h1 class="govuk-label-wrapper">
+    }
+
+    @if (Model.Html != null || Model.Text != null)
+    {
+        <label @cssClass>
+        @if (Model.Html != null)
+        {
+            @Model.Html
+        }
+        else
+        {
+            @Model.Text
+        }
+        </label>
+    }
+    
+    @if (Model.IsPageHeading)
+    {
+        @:</h1>
+    }

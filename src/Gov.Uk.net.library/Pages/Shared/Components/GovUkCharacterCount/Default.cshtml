@@ -1,0 +1,18 @@
+﻿@model GovUkCharacterCountPattern
+@{
+}
+<div class="govuk-character-count" data-module="govuk-character-count"
+@{
+    if (Model.MaxLength > 0){
+        <text> data-maxlength="@Model.MaxLength" </text>
+    }
+    if (Model.Threshold > 0){
+        <text> data-threshold="@Model.Threshold" </text>
+    }
+    if (Model.MaxWords > 0){
+        <text> data-maxwords="@Model.MaxWords" </text>
+    }
+}>
+
+Test
+</div>

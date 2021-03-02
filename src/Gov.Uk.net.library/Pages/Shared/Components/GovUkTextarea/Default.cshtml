@@ -1,4 +1,5 @@
-﻿@model Textarea
+﻿@using System.Text
+@model Textarea
 @{
     if (Model != null)
     {
@@ -19,6 +20,76 @@
             <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
             <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
         </div>
-        <textarea ></textarea>
+
+        var baseCssClass = $"class=\"govuk-textarea";
+        if(Model.ErrorMessage != null)
+        {
+            string.Concat(baseCssClass, $@" govuk-textarea--error");
+        }
+
+        HtmlString cssClass;
+        if (Model.Classes != null)
+        {
+            var cssClasString = new StringBuilder();
+            foreach (var @class in Model.Classes)
+            {
+                cssClasString.Append($" {@class}");
+            }
+
+            cssClass = new HtmlString($"{baseCssClass}{cssClasString.ToString()}\"");
+        }
+        else
+        {
+            cssClass = new HtmlString($"{baseCssClass}\"");
+        }
+
+        HtmlString id = null;
+        if (!string.IsNullOrWhiteSpace(Model.Id))
+        {
+            id = new HtmlString($"id=\"{Model.Id}\"");
+        };
+
+        HtmlString name = null;
+        if (!string.IsNullOrWhiteSpace(Model.Name))
+        {
+            name = new HtmlString($"name=\"{Model.Name}\"");
+        }
+
+        var rows = 5;
+        if (Model.Rows > 0)
+        {
+            rows = Model.Rows;
+        }
+        var rowsStr = new HtmlString($"rows=\"{rows}\"");
+
+
+        var spellCheck = new HtmlString($"spellcheck=\"{Model.Spellcheck}\"");
+
+        HtmlString describedBy = null;
+        if (!string.IsNullOrWhiteSpace(Model.DescribedBy))
+        {
+            describedBy = new HtmlString($"aria-describedby=\"{Model.DescribedBy}\"");
+        }
+
+        HtmlString autocomplete = null;
+        if (!string.IsNullOrWhiteSpace(Model.Autocomplete))
+        {
+            autocomplete = new HtmlString($"autocomplete=\"{Model.Autocomplete}\"");
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
+        var textAreaAttributes = new HtmlString($"{cssClass} {id} {name} {rowsStr}  {attributes} {spellCheck} {describedBy}");
+
+        <textarea @textAreaAttributes>@Model.Value</textarea>
     }
 }

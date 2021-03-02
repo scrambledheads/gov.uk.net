@@ -12,7 +12,7 @@ namespace Gov.Uk.Net.Library.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public bool Spellcheck { get; set; }
-        public string Rows { get; set; }
+        public int Rows { get; set; }
         public string Value { get; set; }
         public string DescribedBy { get; set; }
         public Label Label { get; set; }

@@ -3,10 +3,10 @@
 @{
     if (Model != null)
     {
-        var id = string.Empty;
+        HtmlString id = null;
         if (!string.IsNullOrWhiteSpace(Model.Id))
         {
-            id = $"id=\"{Model.Id}\"";
+            id = new HtmlString($"id=\"{Model.Id}\"");
         }
 
         var baseCssClass = $"class=\"govuk-hint";
@@ -18,8 +18,8 @@
             {
                 cssClasString.Append($" {@class}");
             }
-        
-            cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
+
+            cssClass = new HtmlString($"{baseCssClass}{cssClasString.ToString()}\"");
         }
         else
         {

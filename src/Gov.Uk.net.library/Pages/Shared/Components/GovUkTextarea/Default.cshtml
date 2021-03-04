@@ -4,27 +4,24 @@
     if (Model != null)
     {
         HtmlString errorMessage = null;
-
+        var baseCssClass = $"class=\"govuk-textarea";
+        HtmlString describedBy = null;
         if (Model.ErrorMessage != null)
         {
-            errorMessage = new HtmlString($" govuk-form-group--error");
+            errorMessage = new HtmlString($"govuk-form-group--error");
+            string.Concat(baseCssClass, $@" govuk-textarea--error");
+            var errorId = $"{Model.Id}-error";
+            Model.ErrorMessage.Id = errorId;
+
+            if (!string.IsNullOrWhiteSpace(Model.DescribedBy))
+            {
+                describedBy = new HtmlString($"aria-describedby=\"{Model.DescribedBy} {errorId}\"");
+            }
         }
 
         if (Model.Label == null)
         {
             Model.Label = new Label();
-        }
-
-        <div class="govuk-form-group @errorMessage">
-            <vc:gov-uk-Label label=Model.Label></vc:gov-uk-Label>
-            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
-            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
-        </div>
-
-        var baseCssClass = $"class=\"govuk-textarea";
-        if(Model.ErrorMessage != null)
-        {
-            string.Concat(baseCssClass, $@" govuk-textarea--error");
         }
 
         HtmlString cssClass;
@@ -47,6 +44,11 @@
         if (!string.IsNullOrWhiteSpace(Model.Id))
         {
             id = new HtmlString($"id=\"{Model.Id}\"");
+
+            if (Model.Label != null)
+            {
+                Model.Label.For = id;
+            }
         };
 
         HtmlString name = null;
@@ -62,14 +64,7 @@
         }
         var rowsStr = new HtmlString($"rows=\"{rows}\"");
 
-
         var spellCheck = new HtmlString($"spellcheck=\"{Model.Spellcheck}\"");
-
-        HtmlString describedBy = null;
-        if (!string.IsNullOrWhiteSpace(Model.DescribedBy))
-        {
-            describedBy = new HtmlString($"aria-describedby=\"{Model.DescribedBy}\"");
-        }
 
         HtmlString autocomplete = null;
         if (!string.IsNullOrWhiteSpace(Model.Autocomplete))
@@ -88,8 +83,13 @@
             attributes = attributeBuilder.ToString();
         }
 
-        var textAreaAttributes = new HtmlString($"{cssClass} {id} {name} {rowsStr}  {attributes} {spellCheck} {describedBy}");
-
-        <textarea @textAreaAttributes>@Model.Value</textarea>
+        var textAreaAttributes = new HtmlString($"{cssClass} {id} {name} {rowsStr} {attributes} {spellCheck} {describedBy}");
+ 
+        <div class="govuk-form-group @errorMessage">
+            <vc:gov-uk-Label label=Model.Label></vc:gov-uk-Label>
+            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
+            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
+            <textarea @textAreaAttributes>@Model.Value</textarea>
+        </div>
     }
 }

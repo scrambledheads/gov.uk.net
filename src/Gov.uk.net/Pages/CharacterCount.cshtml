@@ -5,4 +5,10 @@
 
 }
 <h1>@ViewData["Title"]</h1>
-<vc:gov-uk-character-count gov-uk-character-count-pattern=Model.CharacterCounts[0]></vc:gov-uk-character-count>
+
+@{
+    for (int i = 0; i < Model.CharacterCounts.Count; i++)
+    {
+        <vc:gov-uk-character-count gov-uk-character-count-pattern=Model.CharacterCounts[i]></vc:gov-uk-character-count>
+    }
+}

@@ -61,10 +61,7 @@
     {
         "govuk-character-count__message"
     };
-    if (Model.ErrorMessage != null)
-    {
-        hintCssClassList.Add("govuk-textarea--error");
-    }
+
     if (Model.Classes != null)
     {
         hintCssClassList.AddRange(Model.Classes);        
@@ -80,8 +77,10 @@
             new Tuple<string, string>("aria-live", "polite")
         }
     };
+
+    var divAttributes = new HtmlString($"{maxLength}{threshold}{maxWords}");
 }
-<div class="govuk-character-count" data-module="govuk-character-count" @maxLength@threshold@maxWords>
-<vc:gov-uk-textarea textarea=textArea></vc:gov-uk-textarea>
-<vc:gov-uk-hint hint=hint></vc:gov-uk-hint>
+<div class="govuk-character-count" data-module="govuk-character-count" @divAttributes>
+    <vc:gov-uk-textarea textarea=textArea></vc:gov-uk-textarea>
+    <vc:gov-uk-hint hint=hint></vc:gov-uk-hint>
 </div>

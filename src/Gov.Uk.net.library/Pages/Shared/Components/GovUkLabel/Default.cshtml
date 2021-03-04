@@ -17,27 +17,38 @@
     {
         cssClass = new HtmlString($"{baseCssClass}\"");
     }
-}
-    @if (Model.IsPageHeading)
-    {
-        @:<h1 class="govuk-label-wrapper">
-    }
 
-    @if (Model.Html != null || Model.Text != null)
+    if (Model.Html != null || Model.Text != null)
     {
-        <label @cssClass>
-        @if (Model.Html != null)
+        if (Model.IsPageHeading)
         {
-            @Model.Html
+            @:<h1 class="govuk-label-wrapper">
         }
-        else
+
+        string attributes = null;
+        if (Model.Attributes != null && Model.Attributes.Count> 0)
         {
-            @Model.Text
+            foreach (var attribute in Model.Attributes)
+            {
+                attributes = $"{attributes} {attribute.Item1}=\"{attribute.Item2}\"";
+            } 
         }
+
+        var labelAttributes = new HtmlString($"{cssClass} {Model.For} {attributes}");
+        <label @labelAttributes>
+            @if (Model.Html != null)
+            {
+                @Model.Html
+            }
+            else
+            {
+                @Model.Text
+            }
         </label>
+   
+        @if (Model.IsPageHeading)
+        {
+            @:</h1>
+        }
     }
-    
-    @if (Model.IsPageHeading)
-    {
-        @:</h1>
-    }
+}

@@ -36,11 +36,15 @@
             }
             attributes = attributeBuilder.ToString();
         }
-        <span @id @cssClass @attributes>
-            @if (!string.IsNullOrWhiteSpace(Model.VisuallyHiddenText))
-            {
-                @:<span class="govuk-visually-hidden">@Model.VisuallyHiddenText</span>
-            }
+
+        var spanAttributes = new HtmlString($"{id} {cssClass} {attributes}");
+
+        <span @spanAttributes>
+            @{
+                var hiddenText = !String.IsNullOrEmpty(Model.VisuallyHiddenText) ? Model.VisuallyHiddenText : "Error";
+            } 
+
+            <span class="govuk-visually-hidden">@hiddenText:</span>
 
             @if (Model.Html != null)
             {

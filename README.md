@@ -1,5 +1,5 @@
 # Introduction 
-This is an implementation (or the start of) .Gov.uk's https://design-system.service.gov.uk/ design system v3.10.2 in .Net Core 5.0
+This is an implementation (or the start of) .Gov.uk's https://design-system.service.gov.uk/ design system in .Net
 
 See https://govuknet.azurewebsites.net/ for a published version
 
@@ -16,8 +16,8 @@ I am aiming to meet the [criteria](https://design-system.service.gov.uk/communit
 * It cannot be mistaken for an official resource - I point this out in the text of the site implementation and on here 
 * It has documentation explaining how to use it, contribute to it and get support for it. - Added to #ToDo list
 * Support tickets are answered within 1 month - I have none at the moment but I can do this
-* Itâ€™s clearly documented which version of GOV.UK Frontend it supports - I have documented this in this readme first paragraph, on the site implementation of this and will include in the documentation 
-* Itâ€™s no more than 3 months behind the latest version of GOV.UK Frontend design resources are consistent with the styles, components and patterns in the GOV.UK Design System - This is using the latest version of the design system and uses little beyond this.
+* It’s clearly documented which version of GOV.UK Frontend it supports - I have documented this in this readme first paragraph, on the site implementation of this and will include in the documentation 
+* It’s no more than 3 months behind the latest version of GOV.UK Frontend design resources are consistent with the styles, components and patterns in the GOV.UK Design System - This is using the latest version of the design system and uses little beyond this.
 * Development resources output the same markup as GOV.UK Frontend - Yes, the intent is this should be identical with it being a bug if it doesn't
-* It isnâ€™t being charged for or used to promote a private business - As I say at the start of this and [my blog](https://scrambledheads.medium.com/gov-uk-net-9b075f28c194) this was intended to show the implementation of a Design System using .Net and grew from there.
-* Itâ€™s compatible with the Service Standard and Technology code of practice - I believe this is the case.
+* It isn’t being charged for or used to promote a private business - As I say at the start of this and [my blog](https://scrambledheads.medium.com/gov-uk-net-9b075f28c194) this was intended to show the implementation of a Design System using .Net and grew from there.
+* It’s compatible with the Service Standard and Technology code of practice - I believe this is the case.

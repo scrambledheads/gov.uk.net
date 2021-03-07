@@ -1,0 +1,54 @@
+﻿@using System.Text
+@model Label
+@{
+    var baseCssClass = $"class=\"govuk-label";
+    HtmlString cssClass;
+    if (Model.Classes != null)
+    {
+        var cssClasString = new StringBuilder();
+        foreach (var @class in Model.Classes)
+        {
+            cssClasString.Append($" {@class}");
+        }
+        
+        cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
+    }
+    else
+    {
+        cssClass = new HtmlString($"{baseCssClass}\"");
+    }
+
+    if (Model.Html != null || Model.Text != null)
+    {
+        if (Model.IsPageHeading)
+        {
+            @:<h1 class="govuk-label-wrapper">
+        }
+
+        string attributes = null;
+        if (Model.Attributes != null && Model.Attributes.Count> 0)
+        {
+            foreach (var attribute in Model.Attributes)
+            {
+                attributes = $"{attributes} {attribute.Item1}=\"{attribute.Item2}\"";
+            } 
+        }
+
+        var labelAttributes = new HtmlString($"{cssClass} {Model.For} {attributes}");
+        <label @labelAttributes>
+            @if (Model.Html != null)
+            {
+                @Model.Html
+            }
+            else
+            {
+                @Model.Text
+            }
+        </label>
+   
+        @if (Model.IsPageHeading)
+        {
+            @:</h1>
+        }
+    }
+}

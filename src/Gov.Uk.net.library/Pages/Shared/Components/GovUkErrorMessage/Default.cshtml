@@ -1,0 +1,59 @@
+﻿@using System.Text
+@model ErrorMessage 
+@{
+    if (Model != null)
+    {
+        var id = string.Empty;
+        if (!string.IsNullOrWhiteSpace(Model.Id))
+        {
+            id = $"id=\"{Model.Id}\"";
+        }
+
+        var baseCssClass = $"class=\"govuk-error-message";
+        HtmlString cssClass;
+        if (Model.Classes != null)
+        {
+            var cssClasString = new StringBuilder();
+            foreach (var @class in Model.Classes)
+            {
+                cssClasString.Append($" {@class}");
+            }
+        
+            cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
+        }
+        else
+        {
+            cssClass = new HtmlString($"{baseCssClass}\"");
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
+        var spanAttributes = new HtmlString($"{id} {cssClass} {attributes}");
+
+        <span @spanAttributes>
+            @{
+                var hiddenText = !String.IsNullOrEmpty(Model.VisuallyHiddenText) ? Model.VisuallyHiddenText : "Error";
+            } 
+
+            <span class="govuk-visually-hidden">@hiddenText:</span>
+
+            @if (Model.Html != null)
+            {
+                @Model.Html
+            }
+            else
+            {
+                @Model.Text
+            }
+        </span>
+    }
+}

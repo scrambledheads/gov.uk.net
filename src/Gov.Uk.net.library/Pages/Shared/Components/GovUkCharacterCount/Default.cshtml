@@ -1,0 +1,86 @@
+﻿@using System.Text
+@model GovUkCharacterCountPattern
+@{
+    HtmlString maxLength = null;
+    HtmlString threshold = null;
+    HtmlString maxWords = null;
+    if (Model.MaxLength > 0)
+    {
+        maxLength = new HtmlString($" data-maxlength=\"{Model.MaxLength}\" ");
+    }
+    if (Model.Threshold > 0)
+    {
+       threshold = new HtmlString($" data-threshold=\"{Model.Threshold}\" ");
+    }
+    if (Model.MaxWords > 0)
+    {
+        maxWords = new HtmlString($" data-maxwords=\"{Model.MaxWords}\" ");
+    }
+
+    var cssClassList = new List<string>
+    {
+        "govuk-js-character-count"
+    };
+    if (Model.ErrorMessage != null)
+    {
+        cssClassList.Add("govuk-textarea--error");
+    }
+    if (Model.Classes != null)
+    {
+        cssClassList.AddRange(Model.Classes);        
+    }
+
+    var textArea = new Textarea
+    {
+        Id = Model.Id,
+        Name = Model.Name,
+        DescribedBy = $"{Model.Id}-info",
+        Rows = Model.Rows,
+        Spellcheck = Model.SpellCheck,
+        Value = Model.Value,
+        FormGroup = Model.FormGroup,
+        Classes = cssClassList,
+        Label = Model.Label,
+        Hint = Model.Hint,
+        ErrorMessage = Model.ErrorMessage,
+        Attributes = Model.Attributes
+    };
+
+    var hintTextSuffix = string.Empty;
+    if (Model.MaxLength > 0)
+    {
+        hintTextSuffix = $" {Model.MaxLength} characters";
+    }
+    else
+    {
+        hintTextSuffix = $" {Model.MaxWords} words";
+    }
+    var hintText = $"You can enter up to {hintTextSuffix}";
+
+    var hintCssClassList = new List<string>
+    {
+        "govuk-character-count__message"
+    };
+
+    if (Model.Classes != null)
+    {
+        hintCssClassList.AddRange(Model.Classes);        
+    }
+    
+    var hint = new Hint
+    {
+        Text = hintText,
+        Id = $"{Model.Id}-info",
+        Classes = hintCssClassList,
+        Attributes = new List<Tuple<string, string>>
+        {
+            new Tuple<string, string>("aria-live", "polite")
+        }
+    };
+
+    var divAttributes = new HtmlString($"{maxLength}{threshold}{maxWords}");
+}
+<div class="govuk-character-count" data-module="govuk-character-count" @divAttributes>
+    <vc:gov-uk-textarea textarea=textArea></vc:gov-uk-textarea>
+    <vc:gov-uk-hint hint=hint></vc:gov-uk-hint>
+</div>

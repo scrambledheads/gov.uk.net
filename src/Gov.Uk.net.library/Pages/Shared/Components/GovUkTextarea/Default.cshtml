@@ -1,0 +1,95 @@
+﻿@using System.Text
+@model Textarea
+@{
+    if (Model != null)
+    {
+        HtmlString errorMessage = null;
+        var baseCssClass = $"class=\"govuk-textarea";
+        HtmlString describedBy = null;
+        if (Model.ErrorMessage != null)
+        {
+            errorMessage = new HtmlString($"govuk-form-group--error");
+            string.Concat(baseCssClass, $@" govuk-textarea--error");
+            var errorId = $"{Model.Id}-error";
+            Model.ErrorMessage.Id = errorId;
+
+            if (!string.IsNullOrWhiteSpace(Model.DescribedBy))
+            {
+                describedBy = new HtmlString($"aria-describedby=\"{Model.DescribedBy} {errorId}\"");
+            }
+        }
+
+        if (Model.Label == null)
+        {
+            Model.Label = new Label();
+        }
+
+        HtmlString cssClass;
+        if (Model.Classes != null)
+        {
+            var cssClasString = new StringBuilder();
+            foreach (var @class in Model.Classes)
+            {
+                cssClasString.Append($" {@class}");
+            }
+
+            cssClass = new HtmlString($"{baseCssClass}{cssClasString.ToString()}\"");
+        }
+        else
+        {
+            cssClass = new HtmlString($"{baseCssClass}\"");
+        }
+
+        HtmlString id = null;
+        if (!string.IsNullOrWhiteSpace(Model.Id))
+        {
+            id = new HtmlString($"id=\"{Model.Id}\"");
+
+            if (Model.Label != null)
+            {
+                Model.Label.For = id;
+            }
+        };
+
+        HtmlString name = null;
+        if (!string.IsNullOrWhiteSpace(Model.Name))
+        {
+            name = new HtmlString($"name=\"{Model.Name}\"");
+        }
+
+        var rows = 5;
+        if (Model.Rows > 0)
+        {
+            rows = Model.Rows;
+        }
+        var rowsStr = new HtmlString($"rows=\"{rows}\"");
+
+        var spellCheck = new HtmlString($"spellcheck=\"{Model.Spellcheck}\"");
+
+        HtmlString autocomplete = null;
+        if (!string.IsNullOrWhiteSpace(Model.Autocomplete))
+        {
+            autocomplete = new HtmlString($"autocomplete=\"{Model.Autocomplete}\"");
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
+        var textAreaAttributes = new HtmlString($"{cssClass} {id} {name} {rowsStr} {attributes} {spellCheck} {describedBy}");
+ 
+        <div class="govuk-form-group @errorMessage">
+            <vc:gov-uk-Label label=Model.Label></vc:gov-uk-Label>
+            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
+            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
+            <textarea @textAreaAttributes>@Model.Value</textarea>
+        </div>
+    }
+}

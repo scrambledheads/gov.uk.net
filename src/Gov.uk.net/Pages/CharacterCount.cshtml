@@ -1,0 +1,14 @@
+﻿@page
+@model CharacterCountModel
+@{
+    ViewData["Title"] = "Character Count";
+
+}
+<h1>@ViewData["Title"]</h1>
+
+@{
+    for (int i = 0; i < Model.CharacterCounts.Count; i++)
+    {
+        <vc:gov-uk-character-count gov-uk-character-count-pattern=Model.CharacterCounts[i]></vc:gov-uk-character-count>
+    }
+}

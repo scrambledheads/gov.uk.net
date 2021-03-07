@@ -1,0 +1,51 @@
+﻿@using System.Text
+@model Hint
+@{
+    if (Model != null)
+    {
+        HtmlString id = null;
+        if (!string.IsNullOrWhiteSpace(Model.Id))
+        {
+            id = new HtmlString($"id=\"{Model.Id}\"");
+        }
+
+        var baseCssClass = $"class=\"govuk-hint";
+        HtmlString cssClass;
+        if (Model.Classes != null)
+        {
+            var cssClasString = new StringBuilder();
+            foreach (var @class in Model.Classes)
+            {
+                cssClasString.Append($" {@class}");
+            }
+
+            cssClass = new HtmlString($"{baseCssClass}{cssClasString.ToString()}\"");
+        }
+        else
+        {
+            cssClass = new HtmlString($"{baseCssClass}\"");
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
+        <div @id @cssClass @attributes>
+            @if (Model.Html != null)
+            {
+                @Model.Html
+            }
+            else 
+            {
+                @Model.Text
+            }
+        </div>
+    }
+}

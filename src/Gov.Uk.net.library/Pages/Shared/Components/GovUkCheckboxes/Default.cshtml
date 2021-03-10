@@ -1,0 +1,53 @@
+﻿@using System.Text
+@model GovUkCheckboxesPattern
+@{
+    // If an id 'prefix' is not passed, fall back to using the name attribute instead. We need this for error messages and hints as well
+    var idPrefix = !string.IsNullOrEmpty(Model.IdPrefix) ? Model.IdPrefix : Model.Name;
+
+    // A record of other elements that we need to associate with the input using aria-describedby – for example hints or error messages
+    var describedBy = Model.DescribedBy;
+    if (!string.IsNullOrWhiteSpace(Model.Fieldset?.DescribedBy))
+    {
+        describedBy = Model.Fieldset.DescribedBy;
+    }
+
+    bool isConditional;
+    if (Model.Items?.Any(x => !string.IsNullOrEmpty(x.ConditionalHtml)) ?? false)
+    {
+        isConditional = true;
+    }
+
+    var hasFieldset = Model.Fieldset != null;
+
+    var errMessage = string.Empty;
+    if (Model.ErrorMessage != null)
+    {
+        errMessage = "govuk-form-group--error";
+    }
+
+    var cssClasses = string.Empty;
+    if (Model.FormGroup.Classes != null && Model.FormGroup.Classes.Count > 0)
+    {
+        cssClasses = $"class=\"{string.Join(" ", Model.FormGroup.Classes)}\"";
+    }
+
+    var divAttributes = new HtmlString($"{errMessage} {cssClasses}");
+}
+
+<div class="govuk-form-group" @divAttributes>
+    
+    @if (Model.Hint != null)
+    {
+        var hintId = $"{idPrefix}-hint";
+
+        if (!string.IsNullOrWhiteSpace(describedBy))
+        {
+            describedBy = $"{describedBy} {hintId}";
+        }
+        else
+        {
+            describedBy = hintId;
+        }
+        <vc:gov-uk-hint Id=@hintId Classes=@Model.Hint.Classes Attributes=@Model.Hint.Attributes HTML=@Model.Hint.Html Text=@Model.Hint.Text></vc:gov-uk-hint>   
+    }
+</div>

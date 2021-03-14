@@ -2,7 +2,6 @@
 using Gov.Uk.Net.Library.Models.Patterns;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 
 namespace Gov.uk.net.Pages

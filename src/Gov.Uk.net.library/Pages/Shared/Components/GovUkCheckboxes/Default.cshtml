@@ -26,7 +26,7 @@
     }
 
     var cssClasses = string.Empty;
-    if (Model.FormGroup.Classes != null && Model.FormGroup.Classes.Count > 0)
+    if (Model.FormGroup?.Classes != null && Model.FormGroup.Classes.Count > 0)
     {
         cssClasses = $"class=\"{string.Join(" ", Model.FormGroup.Classes)}\"";
     }
@@ -48,6 +48,7 @@
         {
             describedBy = hintId;
         }
-        <vc:gov-uk-hint Id=@hintId Classes=@Model.Hint.Classes Attributes=@Model.Hint.Attributes HTML=@Model.Hint.Html Text=@Model.Hint.Text></vc:gov-uk-hint>   
+        
+        <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>   
     }
 </div>

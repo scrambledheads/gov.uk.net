@@ -12,7 +12,7 @@
     }
 
     var isConditional = false;
-    if (Model.Items?.Any(x => !string.IsNullOrEmpty(x.ConditionalHtml)) ?? false)
+    if (Model.Items?.Any(x => x.ConditionalHtml != null) ?? false)
     {
         isConditional = true;
     }
@@ -102,7 +102,7 @@
                 var conditionalId = $"conditional-{id}";
                 var hasHint = false;
                 var itemHintId = string.Empty;
-                var conditionalHtml = !string.IsNullOrWhiteSpace(item.ConditionalHtml);
+                var conditionalHtml = item.ConditionalHtml != null;
                 if (!string.IsNullOrWhiteSpace(item.Hint?.Text) || item.Hint?.Html != null)
                 {
                     hasHint = true;
@@ -171,8 +171,8 @@
                             Id = itemHintId,
                             Classes = hintClasses,
                             Attributes = item.Hint?.Attributes ?? new List<Tuple<string, string>>(),
-                            Html = item.HTML,
-                            Text = item.Text
+                            Html = item.Hint?.Html,
+                            Text = item.Hint?.Text
                         };
                     }
                     <input class="govuk-checkboxes__input" id="@id" name="@name" type="checkbox" value="@item.Value" @itemDescribedByString @attributes />

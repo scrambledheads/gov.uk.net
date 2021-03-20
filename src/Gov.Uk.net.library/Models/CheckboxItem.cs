@@ -19,7 +19,7 @@ namespace Gov.Uk.Net.Library.Models
         public Hint Hint { get; set; }
         public bool Checked { get; set; }
         public bool Conditional { get; set; }
-        public string ConditionalHtml { get; set; }
+        public HtmlString ConditionalHtml { get; set; }
         public bool Disabled { get; set; }
         public int MyProperty { get; set; }
         public List<Tuple<string, string>> Attributes { get; set; }

@@ -9,5 +9,7 @@
 }
 
 <h1 class="govuk-heading-xl">@ViewData["Title"]</h1>
-
-<vc:gov-uk-checkboxes gov-uk-checkboxes-pattern=Model.Checkboxes></vc:gov-uk-checkboxes>
+@foreach (var checkbox in Model.Checkboxes)
+{
+    <vc:gov-uk-checkboxes gov-uk-checkboxes-pattern=checkbox></vc:gov-uk-checkboxes>
+}

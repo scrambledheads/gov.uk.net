@@ -11,7 +11,7 @@
         describedBy = Model.Fieldset.DescribedBy;
     }
 
-    bool isConditional;
+    var isConditional = false;
     if (Model.Items?.Any(x => !string.IsNullOrEmpty(x.ConditionalHtml)) ?? false)
     {
         isConditional = true;
@@ -35,20 +35,174 @@
 }
 
 <div class="govuk-form-group" @divAttributes>
-    
-    @if (Model.Hint != null)
-    {
-        var hintId = $"{idPrefix}-hint";
+    @{
+        if (Model.Hint != null)
+        {
+            var hintId = $"{idPrefix}-hint";
 
-        if (!string.IsNullOrWhiteSpace(describedBy))
-        {
-            describedBy = $"{describedBy} {hintId}";
+            if (!string.IsNullOrWhiteSpace(describedBy))
+            {
+                describedBy = $"{describedBy} {hintId}";
+            }
+            else
+            {
+                describedBy = hintId;
+            }
+            Model.Hint.Id = hintId;
+
+            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
         }
-        else
+
+        if (Model.ErrorMessage != null)
         {
-            describedBy = hintId;
+            var errorId = $"{Model.IdPrefix}-error";
+            if (!string.IsNullOrWhiteSpace(describedBy))
+            {
+                describedBy = $"{describedBy} {errorId}";
+            }
+            else
+            {
+                describedBy = errorId;
+            }
+            Model.ErrorMessage.Id = errorId;
+
+            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
         }
-        
-        <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>   
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
+        var conditionalAttribute = (isConditional) ? string.Empty : "data-module=\"govuk-checkboxes\"" ;
+        var checkBoxDivAttributes = new HtmlString($"{attributes} {conditionalAttribute}");
     }
+    <div class="govuk-checkboxes @Model.Classes" @checkBoxDivAttributes>
+        @{
+            var counter = 0;
+            foreach (var item in Model.Items)
+            {
+                string id;
+                if (counter == default(int))
+                {
+                    // The first id should not have a number suffix so it's easy to link to from the error summary component 
+                    id = idPrefix;
+                }
+                else
+                {
+                    id = $"{idPrefix}-{counter}";
+                }
+
+                var name = item.Name ?? Model.Name;
+                var conditionalId = $"conditional-{id}";
+                var hasHint = false;
+                var itemHintId = string.Empty;
+                var conditionalHtml = !string.IsNullOrWhiteSpace(item.ConditionalHtml);
+                if (!string.IsNullOrWhiteSpace(item.Hint?.Text) || item.Hint?.Html != null)
+                {
+                    hasHint = true;
+                    itemHintId = $"{id}-item-hint";
+                }
+                
+                var itemDescribedBy = string.Empty;
+                if (!hasFieldset)
+                {
+                    itemDescribedBy = describedBy;
+                }
+                itemDescribedBy = $"{itemDescribedBy} {itemHintId}";
+
+                <div class="govuk-checkboxes__item">
+                    @{
+                    var inputAttributeString = string.Empty;
+                        HtmlString itemDescribedByString = null;
+                        if (item.Checked)
+                        {
+                            inputAttributeString =$"{inputAttributeString} checked";
+                        }
+
+                        if (item.Disabled)
+                        {
+                            inputAttributeString =$"{inputAttributeString} disabled";
+                        }
+
+                        if (conditionalHtml)
+                        {
+                            itemDescribedByString = new HtmlString("aria-describedby=\"{itemDescribedBy}\"");
+                        }
+
+                        var attributeBuilder = new StringBuilder();
+                        foreach (var attribute in item.Attributes)
+                        {
+                            attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+                        }
+                        attributes = attributeBuilder.ToString();
+
+                        var labelClasses = new List<string>
+                        {
+                            "govuk-checkboxes__label"
+                        };
+                        var hintClasses = new List<string>
+                        {
+                            "govuk-checkboxes__hint"
+                        };
+
+                        if (item.Label?.Classes != null)
+                        {
+                            labelClasses.AddRange(item.Label.Classes);
+                            hintClasses.AddRange(item.Label.Classes);
+                        }
+
+                        var label = new Label
+                        {
+                            Html = item.HTML,
+                            Text = item.Text,
+                            Classes = labelClasses,
+                            Attributes = item.Label?.Attributes ?? new List<Tuple<string, string>>(),
+                            For = new HtmlString(id)
+                        };
+
+                        var hint = new Hint
+                        {
+                            Id = itemHintId,
+                            Classes = hintClasses,
+                            Attributes = item.Hint?.Attributes ?? new List<Tuple<string, string>>(),
+                            Html = item.HTML,
+                            Text = item.Text
+                        };
+                    }
+                    <input class="govuk-checkboxes__input" id="@id" name="@name" type="checkbox" value="@item.Value" @itemDescribedByString @attributes />
+                    <vc:gov-uk-label label=label></vc:gov-uk-label>
+
+                    @if (hasHint)
+                    {
+                        <vc:gov-uk-hint hint=hint></vc:gov-uk-hint>
+                    }
+                </div>
+                if (conditionalHtml)
+                {
+                    var conditionalCss = string.Empty;
+                    if (!item.Checked)
+                    {
+                        conditionalCss = "govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden";
+                    }
+                    else
+                    {
+                        conditionalCss = "govuk-checkboxes__conditional";
+                    }
+
+                    <div class="@conditionalCss" id="@conditionalId">
+                        @item.ConditionalHtml
+                    </div>
+                }
+
+
+                counter++;
+            }
+        }
+    </div>
 </div>

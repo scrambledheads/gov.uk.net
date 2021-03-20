@@ -6,6 +6,10 @@ namespace Gov.Uk.Net.Library.Models
 {
     public class CheckboxItem
     {
+        public CheckboxItem()
+        {
+            Attributes = new List<Tuple<string, string>>();
+        }
         public string Text { get; set; }
         public IHtmlContent HTML { get; set; }
         public int Id { get; set; }

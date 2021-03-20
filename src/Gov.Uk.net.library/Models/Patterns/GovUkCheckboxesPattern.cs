@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Gov.Uk.Net.Library.Models.Patterns
 {
@@ -12,5 +13,7 @@ namespace Gov.Uk.Net.Library.Models.Patterns
         public string IdPrefix { get; set; }
         public string  Name { get; set; }
         public List<CheckboxItem> Items { get; set; }
+        public List<string> Classes { get; set; }
+        public List<Tuple<string, string>> Attributes { get; set; }
     }
 }

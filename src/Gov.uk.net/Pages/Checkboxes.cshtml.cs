@@ -20,7 +20,7 @@ namespace Gov.uk.net.Pages
                 Name = "waste",
                 Fieldset = new Fieldset
                 {
-                    Legend = new Legend("Which types of waste do you transport?", new List<string> {"govuk-fieldset__legend--l"}, true)
+                    Legend = new Legend("Which types of waste do you transport?", classes: new List<string> {"govuk-fieldset__legend--l"}, isPageHeading: true)
                 },
                 Hint = new Hint
                 {

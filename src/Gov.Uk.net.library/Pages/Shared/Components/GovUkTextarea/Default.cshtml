@@ -40,14 +40,12 @@
             cssClass = new HtmlString($"{baseCssClass}\"");
         }
 
-        HtmlString id = null;
+        var id = string.Empty;
         if (!string.IsNullOrWhiteSpace(Model.Id))
         {
-            id = new HtmlString($"id=\"{Model.Id}\"");
-
             if (Model.Label != null)
             {
-                Model.Label.For = id;
+                Model.Label.For = new HtmlString(Model.Id);
             }
         };
 

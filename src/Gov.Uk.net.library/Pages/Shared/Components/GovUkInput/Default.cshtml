@@ -1,0 +1,110 @@
+﻿@using System.Text
+@model GovUkInputPattern
+@{
+    var formGroupClassList = new List<string>
+    {
+        "govuk-form-group"
+    };
+    var inputClassList = new List<string>
+    {
+        "govuk-input"
+    };
+
+    if (Model.ErrorMessage != null)
+    {
+        var errMsgClass = "govuk-form-group--error";
+        formGroupClassList.Add(errMsgClass);
+        inputClassList.Add(errMsgClass);
+    }
+
+    /** BGN Wrapper / Formgroup styles **/
+    if (Model.FormGroup?.Classes != null && Model.FormGroup?.Classes.Count > 0)
+    {
+        formGroupClassList.AddRange(Model.FormGroup.Classes);
+    }
+    var wrapperCssClasses = new HtmlString(string.Join(" ", formGroupClassList));
+    /** END Wrapper / Formgroup styles **/
+
+    /** BGN Input styles **/
+    if (Model.Classes != null && Model.Classes.Count() > 0)
+    {
+        inputClassList.AddRange(Model.Classes);
+    }
+    var inputCssClasses = new HtmlString(string.Join(" ", inputClassList));
+    /** END Input styles **/
+
+    Model.Label.For = new HtmlString(Model.Id);
+
+    var prefixSuffixSet = false;
+    HtmlString prefixSuffixTagStart = null;
+    HtmlString prefixSuffixTagEnd = null;
+    if (Model.Prefix != null || Model.Suffix != null)
+    {
+        prefixSuffixSet = true;
+        prefixSuffixTagStart = new HtmlString("<div class=\"govuk-input__wrapper\">");
+        prefixSuffixTagEnd = new HtmlString("<\\div>");
+    }
+}
+<div class="@wrapperCssClasses">
+    <vc:gov-uk-label label=Model.Label></vc:gov-uk-label>
+
+    @{
+        if (Model.Hint != null)
+        {
+            Model.Hint.Id       = $"{Model.Hint.Id}-hint";
+            var describedBy     = string.IsNullOrWhiteSpace(Model.DescribedBy) ? Model.DescribedBy : $"{Model.DescribedBy} {Model.Hint.Id }";
+
+            <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
+        }
+
+        if (Model.ErrorMessage != null)
+        {
+            Model.ErrorMessage.Id   = $"{Model.Id}-error";
+            var describedBy         = string.IsNullOrWhiteSpace(Model.DescribedBy) ? Model.DescribedBy : $"{Model.DescribedBy} {Model.ErrorMessage.Id }";
+
+            <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
+        }
+    }
+
+    @if (prefixSuffixSet)
+    {
+        @prefixSuffixSet
+        @if (string.IsNullOrWhiteSpace(Model.Prefix.Text) || Model.Prefix.Html != null)
+        {
+            var prefixCssList = new List<string>
+            {
+                "govuk-input__prefix"
+            };
+
+            if (Model.Prefix.Classes != null && Model.Prefix.Classes.Count > 0)
+            {
+                prefixCssList.AddRange(Model.Prefix.Classes);
+            }
+
+            <div class="@prefixCssList" aria-hidden="true">
+                @if (Model.Prefix.Html != null)
+                {
+                    @Model.Prefix.Html;
+                }
+                else
+                {
+                    @:Model.Prefix.Text;
+                }
+            </div>
+        }
+    }
+
+    @{
+        HtmlString spellCheck = null;
+        if (Model.SpellCheck)
+        {
+            spellCheck = new HtmlString($"spellcheck=\"{Model.SpellCheck}\"");
+        }
+
+        var inputType = Model.Type ?? "text";
+
+        <input class="@inputCssClasses" id="@Model.Id" name="@Model.Name" type="@inputType" @spellCheck />
+    }
+
+    @prefixSuffixTagEnd
+</div>

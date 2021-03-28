@@ -1,10 +1,9 @@
 ﻿@page
 @model TextInputModel
 @{
-}
-@{
     ViewData["Title"] = "Text Input";
 }
+
 @foreach (var inputPattern in Model.GovUkInputPatterns)
 {
     <vc:gov-uk-input gov-uk-input-pattern=inputPattern></vc:gov-uk-input>

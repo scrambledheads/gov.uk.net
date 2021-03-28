@@ -30,6 +30,80 @@ namespace Gov.uk.net.Pages
                     },
                     Id = "event-name",
                     Name = "event-name"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "What is the name of the event?"
+                    },
+                    Id = "event-name2",
+                    Name = "event-name2"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "20 character width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-20"
+                    },
+                    Id = "width-20",
+                    Name = "width-20"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "10 character width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-10"
+                    },
+                    Id = "width-10",
+                    Name = "width-10"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "5 character width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-5"
+                    },
+                    Id = "width-5",
+                    Name = "width-5"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "3 character width",
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-3"
+                    },
+                    Id = "width-3",
+                    Name = "width-3"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "2 character width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-2"
+                    },
+                    Id = "width-2",
+                    Name = "width-2"
                 }
             };
         }

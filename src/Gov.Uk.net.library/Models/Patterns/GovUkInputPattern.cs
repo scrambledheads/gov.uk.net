@@ -20,7 +20,7 @@ namespace Gov.Uk.Net.Library.Models.Patterns
         public List<string> Classes { get; set; }
         public string AutoComplete { get; set; }
         public string Pattern { get; set; }
-        public bool SpellCheck { get; set; }
+        public bool? SpellCheck { get; set; }
         public List<Tuple<string, string>> Attributes { get; set; }
     }
 }

@@ -49,10 +49,15 @@
     <vc:gov-uk-label label=Model.Label></vc:gov-uk-label>
 
     @{
+        var describedBy = Model.DescribedBy;
         if (Model.Hint != null)
         {
             Model.Hint.Id       = $"{Model.Hint.Id}-hint";
-            var describedBy     = string.IsNullOrWhiteSpace(Model.DescribedBy) ? Model.DescribedBy : $"{Model.DescribedBy} {Model.Hint.Id }";
+
+            if (!string.IsNullOrWhiteSpace(describedBy))
+            {
+                describedBy = $"{describedBy}{Model.Hint.Id}";
+            }
 
             <vc:gov-uk-hint hint=Model.Hint></vc:gov-uk-hint>
         }
@@ -60,7 +65,11 @@
         if (Model.ErrorMessage != null)
         {
             Model.ErrorMessage.Id   = $"{Model.Id}-error";
-            var describedBy         = string.IsNullOrWhiteSpace(Model.DescribedBy) ? Model.DescribedBy : $"{Model.DescribedBy} {Model.ErrorMessage.Id }";
+
+            if (!string.IsNullOrWhiteSpace(describedBy))
+            {
+                describedBy = $"{describedBy}{Model.ErrorMessage.Id}";
+            }
 
             <vc:gov-uk-error-message error-message=Model.ErrorMessage></vc:gov-uk-error-message>
         }
@@ -96,14 +105,55 @@
 
     @{
         HtmlString spellCheck = null;
-        if (Model.SpellCheck)
+        if (Model.SpellCheck.HasValue)
         {
             spellCheck = new HtmlString($"spellcheck=\"{Model.SpellCheck}\"");
         }
 
+        HtmlString value = null;
+        if (!string.IsNullOrWhiteSpace(Model.Value))
+        {
+            value = new HtmlString($"value=\"{Model.Value}\"");
+        }
+
+        HtmlString describedByAttr = null;
+        if (!string.IsNullOrWhiteSpace(describedBy))
+        {
+            describedByAttr = new HtmlString($"aria-describedby=\"{describedBy}\"");
+        }
+
+        HtmlString autocomplete = null;
+        if (!string.IsNullOrWhiteSpace(Model.AutoComplete))
+        {
+            autocomplete = new HtmlString($"autocomplete=\"{Model.AutoComplete}\"");
+        }
+
+        HtmlString pattern = null;
+        if (!string.IsNullOrWhiteSpace(Model.Pattern))
+        {
+            pattern = new HtmlString($"pattern=\"{Model.Pattern}\"");
+        }
+
+        HtmlString inputmode = null;
+        if (!string.IsNullOrWhiteSpace(Model.InputMode))
+        {
+            inputmode = new HtmlString($"inputmode=\"{Model.InputMode}\"");
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+
         var inputType = Model.Type ?? "text";
 
-        <input class="@inputCssClasses" id="@Model.Id" name="@Model.Name" type="@inputType" @spellCheck />
+        <input class="@inputCssClasses" id="@Model.Id" name="@Model.Name" type="@inputType" @spellCheck @value @describedByAttr @autocomplete @pattern @inputmode @attributes />
     }
 
     @prefixSuffixTagEnd

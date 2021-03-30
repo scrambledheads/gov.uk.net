@@ -104,6 +104,141 @@ namespace Gov.uk.net.Pages
                     },
                     Id = "width-2",
                     Name = "width-2"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "Full width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-full"
+                    },
+                    Id = "full",
+                    Name = "full"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "Three-quarters width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-three-quarters"
+                    },
+                    Id = "three-quarters",
+                    Name = "three-quarters"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "Two-thirds width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-two-thirds"
+                    },
+                    Id = "two-thirds",
+                    Name = "two-thirds"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "Two-thirds width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-two-thirds"
+                    },
+                    Id = "two-thirds",
+                    Name = "two-thirds"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "One-half width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-one-half"
+                    },
+                    Id = "one-half",
+                    Name = "one-half"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "One-third width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-one-third"
+                    },
+                    Id = "one-third",
+                    Name = "one-third"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "One-quarter width"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-!-width-one-quarter"
+                    },
+                    Id = "one-quarter",
+                    Name = "one-quarter"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "What is the name of the event?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Hint = new Hint
+                    {
+                        Text = "The name you’ll use on promotional material."
+                    },
+                    Id = "event-name3",
+                    Name = "event-name3"
+                },
+                new GovUkInputPattern
+                {
+                    Label = new Label
+                    {
+                        Text = "What is your account number?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-10"
+                    },
+                    Hint = new Hint
+                    {
+                        Text = "Must be between 6 and 8 digits long"
+                    },
+                    Id = "account-number",
+                    Name = "account-number",
+                    InputMode = "numeric",
+                    Pattern = "[0-9*]",
+                    SpellCheck = false,
+                    DescribedBy = "account-number"
                 }
             };
         }

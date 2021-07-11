@@ -37,6 +37,7 @@
 
     var prefixSuffixSet = false;
     var prefixSuffixTagStart = new HtmlString(@"<div class=""govuk-input__wrapper"">");
+    var prefisSuffixTagEnd = new HtmlString(@"</div>");
     if (Model.Prefix != null || Model.Suffix != null)
     {
         prefixSuffixSet = true;
@@ -168,7 +169,9 @@
                 {
                     @Model.Suffix.Text;
                 }
-            </div>       
+            </div>
+
+            @prefisSuffixTagEnd
         }
     }
 </div>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gov.Uk.Net.Library.Models.Patterns
 {
-    public class GovUkInputPattern
+    public class GovUkTextInputPattern
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -9,15 +9,15 @@ namespace Gov.uk.net.Pages
     public class TextInputModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        public List<GovUkInputPattern> GovUkInputPatterns;
+        public List<GovUkTextInputPattern> GovUkInputPatterns;
 
         public TextInputModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
 
-            GovUkInputPatterns = new List<GovUkInputPattern> 
+            GovUkInputPatterns = new List<GovUkTextInputPattern> 
             {
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -31,7 +31,7 @@ namespace Gov.uk.net.Pages
                     Id = "event-name",
                     Name = "event-name"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -40,7 +40,7 @@ namespace Gov.uk.net.Pages
                     Id = "event-name2",
                     Name = "event-name2"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -53,7 +53,7 @@ namespace Gov.uk.net.Pages
                     Id = "width-20",
                     Name = "width-20"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -66,7 +66,7 @@ namespace Gov.uk.net.Pages
                     Id = "width-10",
                     Name = "width-10"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -79,7 +79,7 @@ namespace Gov.uk.net.Pages
                     Id = "width-5",
                     Name = "width-5"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -92,7 +92,7 @@ namespace Gov.uk.net.Pages
                     Id = "width-3",
                     Name = "width-3"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -105,7 +105,7 @@ namespace Gov.uk.net.Pages
                     Id = "width-2",
                     Name = "width-2"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -118,7 +118,7 @@ namespace Gov.uk.net.Pages
                     Id = "full",
                     Name = "full"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -131,7 +131,7 @@ namespace Gov.uk.net.Pages
                     Id = "three-quarters",
                     Name = "three-quarters"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -144,7 +144,7 @@ namespace Gov.uk.net.Pages
                     Id = "two-thirds",
                     Name = "two-thirds"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -157,7 +157,7 @@ namespace Gov.uk.net.Pages
                     Id = "two-thirds",
                     Name = "two-thirds"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -170,7 +170,7 @@ namespace Gov.uk.net.Pages
                     Id = "one-half",
                     Name = "one-half"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -183,7 +183,7 @@ namespace Gov.uk.net.Pages
                     Id = "one-third",
                     Name = "one-third"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -196,7 +196,7 @@ namespace Gov.uk.net.Pages
                     Id = "one-quarter",
                     Name = "one-quarter"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -214,7 +214,7 @@ namespace Gov.uk.net.Pages
                     Id = "event-name3",
                     Name = "event-name3"
                 },
-                new GovUkInputPattern
+                new GovUkTextInputPattern
                 {
                     Label = new Label
                     {
@@ -239,6 +239,33 @@ namespace Gov.uk.net.Pages
                     Pattern = "[0-9*]",
                     SpellCheck = false,
                     DescribedBy = "account-number"
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "cost-per-item",
+                    Name = "cost-per-item",
+                    Label = new Label
+                    {
+                        Text = "What is the cost per item, in pounds?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Prefix = new Prefix
+                    {
+                        Text = "£"
+                    },
+                    Suffix = new Suffix
+                    {
+                        Text = "per item"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-5"
+                    },
+                    SpellCheck = false
                 }
             };
         }

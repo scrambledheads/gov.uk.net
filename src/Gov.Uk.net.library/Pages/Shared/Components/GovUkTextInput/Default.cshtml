@@ -1,5 +1,5 @@
 ﻿@using System.Text
-@model GovUkInputPattern
+@model GovUkTextInputPattern
 @{
     var formGroupClassList = new List<string>
     {
@@ -36,13 +36,10 @@
     Model.Label.For = new HtmlString(Model.Id);
 
     var prefixSuffixSet = false;
-    HtmlString prefixSuffixTagStart = null;
-    HtmlString prefixSuffixTagEnd = null;
+    var prefixSuffixTagStart = new HtmlString(@"<div class=""govuk-input__wrapper"">");
     if (Model.Prefix != null || Model.Suffix != null)
     {
         prefixSuffixSet = true;
-        prefixSuffixTagStart = new HtmlString("<div class=\"govuk-input__wrapper\">");
-        prefixSuffixTagEnd = new HtmlString("<\\div>");
     }
 }
 <div class="@wrapperCssClasses">
@@ -52,7 +49,7 @@
         var describedBy = Model.DescribedBy;
         if (Model.Hint != null)
         {
-            Model.Hint.Id       = $"{Model.Hint.Id}-hint";
+            Model.Hint.Id = $"{Model.Hint.Id}-hint";
 
             if (!string.IsNullOrWhiteSpace(describedBy))
             {
@@ -77,27 +74,33 @@
 
     @if (prefixSuffixSet)
     {
-        @prefixSuffixSet
-        @if (string.IsNullOrWhiteSpace(Model.Prefix.Text) || Model.Prefix.Html != null)
+        @if (!string.IsNullOrWhiteSpace(Model.Prefix.Text) || Model.Prefix.Html != null)
         {
-            var prefixCssList = new List<string>
-            {
-                "govuk-input__prefix"
-            };
+            @prefixSuffixTagStart
 
-            if (Model.Prefix.Classes != null && Model.Prefix.Classes.Count > 0)
+            var baseCssClass = $"class=\"govuk-input__prefix";
+            HtmlString cssClass;
+            if (Model.Classes != null)
             {
-                prefixCssList.AddRange(Model.Prefix.Classes);
+                var cssClasString = new StringBuilder();
+                foreach (var @class in Model.Classes)
+                {
+                    cssClasString.Append($" {@class}");
+                }
+                cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
             }
-
-            <div class="@prefixCssList" aria-hidden="true">
+            else
+            {
+                cssClass = new HtmlString($"{baseCssClass}\"");
+            }
+            <div @cssClass aria-hidden="true">
                 @if (Model.Prefix.Html != null)
                 {
                     @Model.Prefix.Html;
                 }
                 else
                 {
-                    @:Model.Prefix.Text;
+                    @Model.Prefix.Text;
                 }
             </div>
         }
@@ -152,9 +155,20 @@
         }
 
         var inputType = Model.Type ?? "text";
-
         <input class="@inputCssClasses" id="@Model.Id" name="@Model.Name" type="@inputType" @spellCheck @value @describedByAttr @autocomplete @pattern @inputmode @attributes />
-    }
 
-    @prefixSuffixTagEnd
+        if (Model.Suffix != null)
+        {
+            <div class="govuk-input__suffix" aria-hidden="true">
+                @if (Model.Suffix.Html != null)
+                {
+                    @Model.Suffix.Html;
+                }
+                else
+                {
+                    @Model.Suffix.Text;
+                }
+            </div>       
+        }
+    }
 </div>

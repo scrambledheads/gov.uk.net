@@ -9,7 +9,13 @@
 }
 
 <h1 class="govuk-heading-xl">@ViewData["Title"]</h1>
-@foreach (var checkbox in Model.Checkboxes)
-{
-    <vc:gov-uk-checkboxes gov-uk-checkboxes-pattern=checkbox></vc:gov-uk-checkboxes>
-}
+<div class="app-prose-scope">
+    @foreach (var checkbox in Model.Checkboxes)
+    {
+        <div class="app-example-wrapper" data-module="app-tabs">
+            <div class="app-example__toolbar"><a>@checkbox.CheckboxDescription</a></div>
+            <vc:gov-uk-checkboxes gov-uk-checkboxes-pattern=checkbox.Checkbox></vc:gov-uk-checkboxes>
+        </div>
+
+    }
+</div>

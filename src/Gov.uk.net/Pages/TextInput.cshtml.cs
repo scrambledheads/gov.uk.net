@@ -266,6 +266,127 @@ namespace Gov.uk.net.Pages
                         "govuk-input--width-5"
                     },
                     SpellCheck = false
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "cost",
+                    Name = "cost",
+                    Label = new Label
+                    {
+                        Text = "What is the cost in pounds?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Prefix = new Prefix
+                    {
+                        Text = "£"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-5"
+                    },
+                    SpellCheck = false
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "weight",
+                    Name = "weight",
+                    Label = new Label
+                    {
+                        Text = "What is the weight in kilograms?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Prefix = new Prefix
+                    {
+                        Text = "kg"
+                    },
+                    Suffix = new Suffix
+                    {
+                        Text = "per item"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-5"
+                    },
+                    SpellCheck = false
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "postcode",
+                    Name = "postcode",
+                    Label = new Label
+                    {
+                        Text = "Postcode"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-10"
+                    },
+                    AutoComplete = "postal-code"
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "event-name",
+                    Name = "event-name",
+                    Label = new Label
+                    {
+                        Text = "What is the name of the event?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-10"
+                    },
+                    Hint = new Hint
+                    {
+                        Text = "The name you’ll use on promotional material."
+                    },
+                    ErrorMessage = new ErrorMessage
+                    {
+                        Text = "Enter an event name"
+                    }
+                },
+                new GovUkTextInputPattern
+                {
+                    Id = "cost-per-item-error",
+                    Name = "cost-per-item-error",
+                    Label = new Label
+                    {
+                        Text = "What is the cost per item, in pounds?",
+                        Classes = new List<string>
+                        {
+                            "govuk-label--l"
+                        },
+                        IsPageHeading = true
+                    },
+                    Prefix = new Prefix
+                    {
+                        Text = "£"
+                    },
+                    Suffix = new Suffix
+                    {
+                        Text = "per item"
+                    },
+                    Classes = new List<string>
+                    {
+                        "govuk-input--width-5"
+                    },
+                    ErrorMessage = new ErrorMessage
+                    {
+                        Text = "Enter a cost per item, in pounds"
+                    },
+                    SpellCheck = false
                 }
             };
         }

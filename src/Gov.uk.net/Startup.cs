@@ -1,4 +1,5 @@
 using Gov.Uk.Net.Library.Components;
+using Gov.Uk.Net.Library.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -23,6 +24,7 @@ namespace Gov.uk.net
             services.AddRazorPages();
 
             services.AddTransient<ITagHelperComponent, GovUkBackLinkComponent>();
+            services.AddTransient<IRenderViewComponentService, RenderViewComponentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

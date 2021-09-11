@@ -13,4 +13,10 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="lib\govuk\assets\" />
+    <Folder Include="lib\govuk\vendor\polyfills\Element\" />
+    <Folder Include="lib\govuk\vendor\polyfills\Function\" />
+  </ItemGroup>
+
 </Project>

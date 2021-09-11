@@ -3,7 +3,7 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "library": "govuk-frontend@3.10.2",
+      "library": "govuk-frontend@3.13.0",
       "destination": "lib/"
     }
   ]

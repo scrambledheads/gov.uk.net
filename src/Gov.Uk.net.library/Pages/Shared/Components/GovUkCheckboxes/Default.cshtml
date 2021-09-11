@@ -79,7 +79,7 @@
             attributes = attributeBuilder.ToString();
         }
 
-        var conditionalAttribute = (isConditional) ? string.Empty : "data-module=\"govuk-checkboxes\"" ;
+        var conditionalAttribute = (isConditional) ? "data-module=\"govuk-checkboxes\"" : string.Empty;
         var checkBoxDivAttributes = new HtmlString($"{attributes} {conditionalAttribute}");
     }
     <div class="govuk-checkboxes @Model.Classes" @checkBoxDivAttributes>
@@ -132,7 +132,7 @@
 
                         if (conditionalHtml)
                         {
-                            itemDescribedByString = new HtmlString("aria-describedby=\"{itemDescribedBy}\"");
+                            itemDescribedByString = new HtmlString($"aria-describedby=\"{itemDescribedBy}\"");
                         }
 
                         var attributeBuilder = new StringBuilder();

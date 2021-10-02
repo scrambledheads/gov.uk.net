@@ -5,6 +5,12 @@ namespace Gov.Uk.Net.Library.Models
 {
     public class Legend
     {
+        public Legend(string text)
+        {
+            Text = text;
+            Classes = new List<string>();
+            IsPageHeading = false;
+        }
         public Legend(string text, List<string> classes, bool isPageHeading = false)
         {
             Text = text;

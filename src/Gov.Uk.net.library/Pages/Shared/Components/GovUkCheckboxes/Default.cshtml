@@ -11,13 +11,15 @@
         describedBy = Model.Fieldset.DescribedBy;
     }
 
+    // fieldset is false by default
+    var hasFieldset = Model.Fieldset != null;
+
     var isConditional = false;
     if (Model.Items?.Any(x => x.ConditionalHtml != null) ?? false)
     {
         isConditional = true;
     }
 
-    var hasFieldset = Model.Fieldset != null;
 
     var errMessage = string.Empty;
     if (Model.ErrorMessage != null)
@@ -83,7 +85,13 @@
         var checkBoxDivAttributes = new HtmlString($"{attributes} {conditionalAttribute}");
     }
     <div class="govuk-checkboxes @Model.Classes" @checkBoxDivAttributes>
+                <vc:gov-uk-fieldset govUkFieldset=new GovUkFieldsetPattern() />
         @{
+            if (hasFieldset)
+            {
+
+            }
+
             var counter = 0;
             foreach (var item in Model.Items)
             {
@@ -199,7 +207,6 @@
                         @item.ConditionalHtml
                     </div>
                 }
-
 
                 counter++;
             }

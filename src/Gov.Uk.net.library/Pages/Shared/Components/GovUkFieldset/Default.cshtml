@@ -1,0 +1,103 @@
+﻿@using System.Text
+@using Gov.Uk.Net.Library.Models.Patterns
+@using Microsoft.AspNetCore.Html
+@model GovUkFieldsetPattern
+@{
+        var baseCssClass = $"class=\"govuk-fieldset";
+        HtmlString cssClass;
+        if (Model.Classes != null)
+        {
+            var cssClassString = new StringBuilder();
+            foreach (var @class in Model.Classes)
+            {
+                cssClassString.Append($" {@class}");
+            }
+
+            cssClass = new HtmlString($"{baseCssClass}{cssClassString.ToString()}\"");
+        }
+        else
+        {
+            cssClass = new HtmlString($"{baseCssClass}\"");
+        }
+
+        HtmlString role;
+        if (Model.Role != null)
+        {
+            role = new HtmlString($"role=\"{Model.Role}\"");
+        }
+        else
+        {
+            role = new HtmlString(string.Empty);
+        }
+
+        HtmlString describedBy;
+        if (!string.IsNullOrWhiteSpace(Model.DescribedBy))
+        {
+            describedBy = new HtmlString($"aria-describedby=\"{Model.DescribedBy}\"");
+        }
+        else
+        {
+            describedBy = new HtmlString(string.Empty);
+        }
+
+        var attributes = string.Empty;
+        if (Model.Attributes != null)
+        {
+            var attributeBuilder = new StringBuilder();
+            foreach (var attribute in Model.Attributes)
+            {
+                attributeBuilder.Append($" {attribute.Item1}={attribute.Item2}");
+            }
+            attributes = attributeBuilder.ToString();
+        }
+}
+
+<fieldset @cssClass @role @describedBy @attributes>
+    @{
+        if (Model.Legend != null)
+        {
+            var baseCssClassLegend = $"class=\"govuk-fieldset__legend";
+            HtmlString cssClassLegend;
+            if (Model.Classes != null)
+            {
+                var cssClassStringLegend = new StringBuilder();
+                foreach (var @class in Model.Classes)
+                {
+                    cssClassStringLegend.Append($" {@class}");
+                }
+
+                cssClassLegend = new HtmlString($"{baseCssClassLegend}{cssClassStringLegend.ToString()}\"");
+            }
+            else
+            {
+                cssClassLegend = new HtmlString($"{baseCssClassLegend}\"");
+            }
+
+            <legend @cssClassLegend>
+                    @if (Model.Legend.IsPageHeading)
+                    {
+                        Html.Raw("<h1>");
+                    }
+
+                    @if (Model.Legend.Html is not null)
+                    {
+                        @Model.Legend.Html
+                    }
+                    else
+                    {
+                        @Model.Legend.Text
+                    }
+
+                    @if (Model.Legend.IsPageHeading)
+                    {
+                        Html.Raw("</h1>");
+                    }
+            </legend>
+
+            @Model.HTML
+        }
+    }
+    
+    @*" ToDo pass HTML Content through to display as "Caller" in original *@
+
+</fieldset>

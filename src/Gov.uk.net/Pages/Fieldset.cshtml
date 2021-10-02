@@ -1,0 +1,50 @@
+﻿@page
+@model FieldsetsModel
+@{
+    ViewData["Title"] = "Fieldsets";
+
+    var fieldset1 = new GovUkFieldsetPattern
+    {
+        Legend = new Legend("What is your address?", new List<string> { "govuk-fieldset__legend--l" }, isPageHeading: true)
+    };
+    var input1 = new GovUkTextInputPattern
+    {
+        Label = new Label
+        {
+            Html = new HtmlString(@"Building and street <span class=""govuk-visually-hidden"">line 1 of 2</span>")
+        },
+        Id = "address-line-1",
+        Name = "address-line-1",
+        AutoComplete = "address-line1"
+    };
+    var input2 = new GovUkTextInputPattern
+    {
+        Label = new Label
+        {
+            Html = new HtmlString(@"<span class=""govuk-visually-hidden"">Building and street line 2 of 2</span>")
+        },
+        Id = "address-line-2",
+        Name = "address-line-2",
+        AutoComplete = "address-line2"
+    };
+
+    var fieldset2 = new GovUkFieldsetPattern
+    {
+        Legend = new Legend("Legend as page heading", new List<string> { "govuk-fieldset__legend--l" }, isPageHeading:true)
+    };
+}
+
+<h1 class="govuk-heading-xl">@ViewData["Title"]</h1>
+<div class="app-prose-scope">
+        <div class="app-example-wrapper" data-module="app-tabs">
+            <div class="app-example__toolbar"><a>With Multiple inputs</a></div>
+            <vc:gov-uk-fieldset gov-uk-fieldset-pattern=fieldset1>
+                <vc:gov-uk-text-input gov-uk-text-input-pattern=input1></vc:gov-uk-text-input>
+                <vc:gov-uk-text-input gov-uk-text-input-pattern=input2></vc:gov-uk-text-input>
+            </vc:gov-uk-fieldset>
+        </div>
+        <div class="app-example-wrapper" data-module="app-tabs">
+            <div class="app-example__toolbar"><a>With Legend as page Heading</a></div>
+            <vc:gov-uk-fieldset gov-uk-fieldset-pattern=fieldset2><p>TEST</p></vc:gov-uk-fieldset>
+        </div>
+</div>

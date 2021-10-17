@@ -9,7 +9,7 @@ namespace Gov.Uk.Net.Library.Models.Patterns
         public List<Tuple<string, string>> Attributes { get; set; }
         public List<string> Classes { get; set; }
         public string DescribedBy { get; set; }
-        public IHtmlContent HTML { get; set; }
+        public IHtmlContent HTMLContent { get; set; }
         public Legend Legend { get; set; }
         public string Role { get; set; }
     }

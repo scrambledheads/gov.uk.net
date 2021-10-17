@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using System.Threading.Tasks;
 
 namespace Gov.Uk.Net.Library.Components
 {
@@ -9,7 +8,7 @@ namespace Gov.Uk.Net.Library.Components
     {
         public override int Order => 1;
 
-        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             if (string.Equals(context.TagName, "a", StringComparison.OrdinalIgnoreCase) && output.Attributes.ContainsName("backlink"))
             {

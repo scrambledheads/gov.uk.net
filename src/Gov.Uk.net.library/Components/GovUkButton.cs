@@ -3,12 +3,11 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using static Gov.Uk.Net.Library.Enums.HTMLEnums;
 
-namespace Gov.Uk.Net.Library
+namespace Gov.Uk.Net.Library.Components
 {
     public class GovUkButton : TagHelper
     {
@@ -54,7 +53,7 @@ namespace Gov.Uk.Net.Library
             {
                 "govuk-button"
             };
-            
+
             if (Classes != null && Classes.Count > 0)
             {
                 classNames.AddRange(Classes);

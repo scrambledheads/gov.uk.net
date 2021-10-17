@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using static Gov.Uk.Net.Library.Enums.HTMLEnums;
 
-namespace Gov.Uk.Net.Library
+namespace Gov.Uk.Net.Library.Components
 {
     public class GovUkBreadcrumbs : TagHelper
     {
@@ -53,7 +53,7 @@ namespace Gov.Uk.Net.Library
                     {
                         anchor.AddCssClass("govuk-breadcrumbs__link");
                         anchor.Attributes.Add("href", item.Href);
-                        
+
                         if (item.Attributes != null && item.Attributes.Count > 0)
                         {
                             foreach (var attribute in item.Attributes)
@@ -76,8 +76,8 @@ namespace Gov.Uk.Net.Library
                         anchor.InnerHtml.Append(item.Text);
                     }
                     var listItem = new TagBuilder("li");
-                        listItem.AddCssClass("govuk-breadcrumbs__list-item");
-                        listItem.InnerHtml.AppendHtml(anchor);
+                    listItem.AddCssClass("govuk-breadcrumbs__list-item");
+                    listItem.InnerHtml.AppendHtml(anchor);
 
                     breadcrumbList.InnerHtml.AppendHtml(listItem);
                 }

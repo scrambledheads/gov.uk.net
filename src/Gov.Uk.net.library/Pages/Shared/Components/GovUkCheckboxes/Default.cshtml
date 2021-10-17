@@ -20,7 +20,6 @@
         isConditional = true;
     }
 
-
     var errMessage = string.Empty;
     if (Model.ErrorMessage != null)
     {
@@ -89,8 +88,20 @@
         @{
             if (hasFieldset)
             {
-
+                var govUkFieldsetPattern = new GovUkFieldsetPattern
+                {
+                    DescribedBy = describedBy,
+                    //Classes = Model.Fieldset.Classes,
+                    //Attributes = Model.Fieldset.Attributes
+                    //HTMLContent = Model.C
+                    Legend = Model.Fieldset.Legend
+                };
             }
+            else
+            {
+                
+            };
+
 
             var counter = 0;
             foreach (var item in Model.Items)

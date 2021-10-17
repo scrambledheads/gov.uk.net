@@ -62,7 +62,7 @@
 
         if (Model.ErrorMessage != null)
         {
-            Model.ErrorMessage.Id   = $"{Model.Id}-error";
+            Model.ErrorMessage.Id = $"{Model.Id}-error";
 
             if (!string.IsNullOrWhiteSpace(describedBy))
             {
@@ -83,12 +83,12 @@
             HtmlString cssClass;
             if (Model.Classes != null)
             {
-                var cssClasString = new StringBuilder();
+                var cssClassString = new StringBuilder();
                 foreach (var @class in Model.Classes)
                 {
-                    cssClasString.Append($" {@class}");
+                    cssClassString.Append($" {@class}");
                 }
-                cssClass = new HtmlString($"{baseCssClass} {cssClasString.ToString()}\"");
+                cssClass = new HtmlString($"{baseCssClass} {cssClassString.ToString()}\"");
             }
             else
             {
